@@ -10,6 +10,7 @@
 	    <thead>
 	        <tr>
 	            <th>Id</th>
+	            <th>Image</th>
 	            <th>Name</th>
 	            <th>Email</th>
 	            <th>Role</th>
@@ -25,7 +26,14 @@
 	    		
 			        <tr class="active">
 			            <td>{{ $user->id }}</td>
-			            <td>{{ $user->name }}</td>
+			            <td>
+			            	<img width="100" height="100" src="{{$user->photo ? $user->photo->file : 'http://placehold.it/100x100'}}" alt="image" class="img-responsive img-border" />
+			           	</td>
+			            <td>
+			            	<a href="{{route('admin.users.edit', $user->id)}}">
+			            		{{ $user->name }}
+			            	</a>
+			            </td>
 			            <td>{{ $user->email }}</td>
 			            <td>{{$user->role ? $user->role->name : 'User has no role'}}</td>
 			            <td>{{ $user->is_active == 1 ? 'Active':'Not Active'}}</td>
