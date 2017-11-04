@@ -28,10 +28,15 @@ Route::get('/admin', function(){
 });
 
 
+
+
 Route::group(['middleware'=>'admin'], function(){
 	//admin routes
 	Route::resource('admin/users', 'AdminUsersController');
+	//post routes
+	Route::resource('admin/posts', 'AdminPostsController');
 
+	// Route::get('/admin/del', 'AdminUsersController@test');
 });
 
 

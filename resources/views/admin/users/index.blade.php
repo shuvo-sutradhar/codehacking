@@ -3,6 +3,14 @@
 
 @section('content')
 	
+	@if(Session::has('delete_user'))
+
+		<div class="alert alert-danger">
+			<strong>{{Session('delete_user')}}</strong>
+		</div>
+
+	@endif
+
 	<h1>Users</h1>
 
 	<!-- users table -->

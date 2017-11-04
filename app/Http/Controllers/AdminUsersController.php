@@ -7,6 +7,7 @@ use App\User;
 use App\Role;
 use App\Photo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 use App\Http\Requests;
 
@@ -139,5 +140,29 @@ class AdminUsersController extends Controller
     public function destroy($id)
     {
         //
+        // User::findOrFail($id)->delete();
+        $user = User::findOrFail($id);
+        $photo = Photo::find($user->photo_id);
+
+        if($user->photo_id != ''){
+
+            unlink(public_path() . $user->photo->file);
+            $photo->delete();
+
+        }
+
+        $user->delete();
+        Session::flash('delete_user','User Has Been Deleted.');
+        return redirect('/admin/users');
+
+    }
+
+
+    public function test()
+    {
+        //
+        $users = User::all();
+        return view('admin.users.index_demo', compact('users'));
+
     }
 }
