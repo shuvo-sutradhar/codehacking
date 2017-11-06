@@ -1,0 +1,41 @@
+[33mcommit d2ac1585c7b896560e2345306de8bc9e68cf4185[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Shuvosd <shuvosutradhar00@gmail.com>
+Date:   Sun Nov 5 10:05:59 2017 +0600
+
+    able to create posts with dynamic categories
+
+[33mcommit 1d844ab5fa350ac50f07707af21765e248cfffe0[m
+Author: Shuvosd <shuvosutradhar00@gmail.com>
+Date:   Sat Nov 4 14:32:48 2017 +0600
+
+    able to create post with static category.
+
+[33mcommit 1d93d52d37271713a078642dcf5c1f828d56b5f3[m
+Author: Shuvosd <shuvosutradhar00@gmail.com>
+Date:   Wed Nov 1 16:01:23 2017 +0600
+
+    Add middelware security without testing
+
+[33mcommit 2f912c462b497e2c1e668e07314b756ad529978a[m
+Author: Shuvosd <shuvosutradhar00@gmail.com>
+Date:   Wed Nov 1 10:05:04 2017 +0600
+
+    Users with uploading feature working
+
+[33mcommit c317a41fce57e3ea137fa8513c43d8347b475f03[m
+Author: Shuvosd <shuvosutradhar00@gmail.com>
+Date:   Tue Oct 31 13:57:33 2017 +0600
+
+    User page working without photos
+
+[33mcommit b54019279df545993737506386e92f1984c70f99[m
+Author: Shuvosd <shuvosutradhar00@gmail.com>
+Date:   Sun Oct 29 15:40:12 2017 +0600
+
+    Admin master page setup
+
+[33mcommit a78eb8fe504660a9cb29f87bbb8605bc63c76e9a[m
+Author: Shuvosd <shuvosutradhar00@gmail.com>
+Date:   Sat Oct 28 14:14:19 2017 +0600
+
+    My first commit admin views created

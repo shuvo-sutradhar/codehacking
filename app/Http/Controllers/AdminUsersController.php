@@ -67,6 +67,8 @@ class AdminUsersController extends Controller
 
         $input['password'] = bcrypt($request->password);
         User::create($input);
+
+        Session::flash('create_user','User Has Been Created.');
         return redirect('/admin/users');
         // return $request->all();
     }
@@ -128,6 +130,7 @@ class AdminUsersController extends Controller
 
         }
         $user->update($input);
+        Session::flash('update_user','User Has Been Updated.');
         return redirect('/admin/users');
     }
 

@@ -4,11 +4,19 @@
 @section('content')
 	
 	@if(Session::has('delete_user'))
-
 		<div class="alert alert-danger">
 			<strong>{{Session('delete_user')}}</strong>
 		</div>
-
+	@endif
+	@if(Session::has('create_user'))
+		<div class="alert alert-danger">
+			<strong>{{Session('create_user')}}</strong>
+		</div>
+	@endif
+	@if(Session::has('update_user'))
+		<div class="alert alert-danger">
+			<strong>{{Session('update_user')}}</strong>
+		</div>
 	@endif
 
 	<h1>Users</h1>

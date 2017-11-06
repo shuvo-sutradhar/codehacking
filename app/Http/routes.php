@@ -36,7 +36,7 @@ Route::group(['middleware'=>'admin'], function(){
 	//post routes
 	Route::resource('admin/posts', 'AdminPostsController');
 
-	// Route::get('/admin/del', 'AdminUsersController@test');
+	Route::resource('admin/categories', 'AdminCategoriesController');
 });
 
 
