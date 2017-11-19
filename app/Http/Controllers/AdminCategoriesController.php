@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Session;
 
 class AdminCategoriesController extends Controller
 {
@@ -20,16 +21,6 @@ class AdminCategoriesController extends Controller
         return view('admin.categories.index',compact('categories'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-        return view('admin.categories.create');
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -79,6 +70,10 @@ class AdminCategoriesController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $category = Category::findOrFail($id);
+        $category->update($request->all());
+        Session::flash('CategoryUpdated','Category Has Been updated.');
+        return redirect('/admin/categories');
     }
 
     /**
@@ -90,5 +85,9 @@ class AdminCategoriesController extends Controller
     public function destroy($id)
     {
         //
+        Category::findOrFail($id)->delete();
+        Session::flash('CategoryDeleted','Category Has Been Deleted.');
+        return redirect('/admin/categories');
     }
+
 }

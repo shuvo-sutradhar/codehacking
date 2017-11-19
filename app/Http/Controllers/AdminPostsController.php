@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PostsCreateRequest;
 use App\Category;
 use App\User;
-use App\Posts;
+use App\Post;
 use App\Photo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,8 +20,15 @@ class AdminPostsController extends Controller
     public function index()
     {
         //
-        $posts = Posts::all();
+        $posts = Post::paginate(2);
         return view('admin.posts.index',compact('posts'));
+    }
+    public function welcomeView()
+    {
+        //
+        $posts = Post::paginate(2);
+        $catagories = Category::all();
+        return view('welcome',compact('posts','catagories'));
     }
 
     /**
@@ -32,7 +39,7 @@ class AdminPostsController extends Controller
     public function create()
     {
         //
-        $categories = Category::lists('name','id')->all();
+        $categories = Category::pluck('name','id')->all();
 
         return view('admin.posts.create',compact('categories'));
     }
@@ -58,7 +65,7 @@ class AdminPostsController extends Controller
 
         }
 
-        $user->posts()->create($input);
+        $user->post()->create($input);
         Session::flash('create_post','Post Has Been Created.');
         return redirect('/admin/posts');
     }
@@ -83,8 +90,8 @@ class AdminPostsController extends Controller
     public function edit($id)
     {
         //
-        $post = Posts::findOrFail($id);
-        $categories = Category::lists('name','id')->all();
+        $post = Post::findOrFail($id);
+        $categories = Category::pluck('name','id')->all();
         return view('admin.posts.edit', compact('post','categories'));
 
     }
@@ -111,9 +118,11 @@ class AdminPostsController extends Controller
 
         }
 
-        Auth::user()->posts()->whereId($id)->first()->update($input);
+        Auth::user()->post()->whereId($id)->first()->update($input);
         Session::flash('update_post','Post Has Been updated.');
         return redirect('/admin/posts');
+
+        
     }
 
     /**
@@ -125,7 +134,7 @@ class AdminPostsController extends Controller
     public function destroy($id)
     {
         // User::findOrFail($id)->delete();
-        $post = Posts::findOrFail($id);
+        $post = Post::findOrFail($id);
 
         unlink(public_path() . $post->photo->file);
 
@@ -134,4 +143,37 @@ class AdminPostsController extends Controller
         Session::flash('delete_post','Post Has Been Deleted.');
         return redirect('/admin/posts');
     }
+
+
+    public function post($slug){
+        $post = Post::findBySlugOrFail($slug);
+        $comments = $post->comments()->whereIsActive(1)->get();
+        $categories = Category::all();
+        return view('post',compact('post','categories','comments'));
+    }
+
+
+    public function getAllCat($slug){
+        $categories = Category::all();
+        $category = Category::findBySlugOrFail($slug);;
+        $posts = $category->post()->paginate(2);
+        return view('category',compact('categories','category','posts'));
+       // return view('category')->with('category', $category)->with('categories',$categories)->with('posts', $posts);
+    }
+
+
+    public function searchResult(Request $request){
+        $s = $request->input('s');
+        $posts = Post::latest()->search($s)->paginate(10);
+
+        return view('search',compact('posts'));
+    }
+
+
+
+
+
+
+
+
 }

@@ -2,6 +2,18 @@
 
 
 @section('content')
+
+	@if(Session::has('CategoryUpdated'))
+		<div class="alert alert-success">
+			<strong>{{Session('CategoryUpdated')}}</strong>
+		</div>
+	@endif
+	@if(Session::has('CategoryDeleted'))
+		<div class="alert alert-danger">
+			<strong>{{Session('CategoryDeleted')}}</strong>
+		</div>
+	@endif
+
 	<h1>Categories</h1>
 
 	<div class="col-md-6">

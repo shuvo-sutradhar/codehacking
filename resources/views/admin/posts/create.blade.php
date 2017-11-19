@@ -3,6 +3,8 @@
 
 @section('content')
 
+	@include('includes.tinyEditor')
+
 	<h1>Create Post</h1>
 	<!-- create user form -->
 	{!! Form::open(['method'=>'POST','action'=>'AdminPostsController@store','files'=>true]) !!}

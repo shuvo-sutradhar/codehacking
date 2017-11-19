@@ -3,6 +3,8 @@
 
 @section('content')
 
+	@include('includes.tinyEditor')
+
 	<h1>Edit Post</h1>
 	<div class="row">
 		<div class="col-md-3">
